@@ -9,7 +9,6 @@ const elements = {
   placeLabel: document.querySelector("#place-label"),
   cloudCover: document.querySelector("#cloud-cover"),
   currentSummary: document.querySelector("#current-summary"),
-  hourlyStrip: document.querySelector("#hourly-strip"),
   nightList: document.querySelector("#night-list"),
   status: document.querySelector("#status-message"),
   panel: document.querySelector(".forecast-panel"),
@@ -100,10 +99,6 @@ function getCurrentHourIndex(rows, currentTime) {
   return Math.max(nextIndex, 0);
 }
 
-function getNext24Hours(rows, startIndex) {
-  return rows.slice(startIndex, startIndex + 24);
-}
-
 function getPreviousDate(dateString) {
   const [year, month, day] = dateString.split("-").map(Number);
   const date = new Date(year, month - 1, day);
@@ -132,24 +127,6 @@ function getNightGroups(rows, startIndex) {
     title: `${formatDay(date)} night`,
     hours,
   }));
-}
-
-function renderHourly(rows) {
-  elements.hourlyStrip.replaceChildren(
-    ...rows.map((row) => {
-      const skyCleanLevel = getSkyCleanLevel(row.cloudCover);
-      const card = document.createElement("article");
-      card.className = "hour-card";
-      card.setAttribute("role", "listitem");
-      card.innerHTML = `
-        <span class="hour-time">${formatHour(row.time)}</span>
-        <div class="mini-cloud" aria-hidden="true"><span style="width: ${skyCleanLevel}%"></span></div>
-        <span class="hour-percent">${skyCleanLevel}%</span>
-        <span class="hour-time">${Math.round(row.temperature)}°</span>
-      `;
-      return card;
-    }),
-  );
 }
 
 function renderNights(groups) {
@@ -209,7 +186,6 @@ async function renderForecast(location) {
     elements.placeLabel.textContent = formatPlace(location);
     elements.cloudCover.textContent = currentSkyCleanLevel;
     elements.currentSummary.textContent = summarizeSkyCleanLevel(currentSkyCleanLevel, forecast.current.weather_code);
-    renderHourly(getNext24Hours(rows, currentHourIndex));
     renderNights(getNightGroups(rows, currentHourIndex));
     setStatus(`Updated ${new Intl.DateTimeFormat([], { hour: "numeric", minute: "2-digit" }).format(new Date())}`);
   } catch (error) {

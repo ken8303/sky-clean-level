@@ -50,7 +50,6 @@ input {
 .topbar,
 .location-card,
 .current-card,
-.hourly-section,
 .nights-section {
   background: var(--panel);
   border: 1px solid var(--line);
@@ -269,18 +268,13 @@ input {
   padding-bottom: 0.12em;
 }
 
-.hourly-section,
 .nights-section {
   padding: 18px;
 }
 
-.hourly-section {
+.nights-section {
   grid-column: 2;
   grid-row: 2 / 4;
-}
-
-.nights-section {
-  grid-column: 1 / -1;
 }
 
 .section-heading {
@@ -290,28 +284,12 @@ input {
   justify-content: space-between;
 }
 
-.hourly-strip {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
-  gap: 10px;
-}
-
-.hour-card,
 .night-hour {
   border: 1px solid var(--line);
   border-radius: 6px;
   background: #ffffff;
 }
 
-.hour-card {
-  min-height: 118px;
-  padding: 12px;
-  display: grid;
-  align-content: space-between;
-  gap: 10px;
-}
-
-.hour-time,
 .night-time {
   color: var(--muted);
   font-size: 0.82rem;
@@ -331,11 +309,6 @@ input {
   height: 100%;
   border-radius: inherit;
   background: linear-gradient(90deg, var(--green), var(--blue));
-}
-
-.hour-percent {
-  font-size: 1.45rem;
-  font-weight: 900;
 }
 
 .night-list {
@@ -392,7 +365,6 @@ input {
     grid-template-columns: 1fr;
   }
 
-  .hourly-section,
   .nights-section {
     grid-column: auto;
     grid-row: auto;
@@ -422,7 +394,6 @@ input {
     min-height: 44px;
   }
 
-  .hourly-strip,
   .night-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
