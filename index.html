@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sky Clean Level</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="forecast-panel" aria-labelledby="app-title">
+        <div class="topbar">
+          <div>
+            <p class="eyebrow">Live sky clarity forecast</p>
+            <h1 id="app-title">Sky Clean Level</h1>
+          </div>
+          <button class="icon-button" id="refresh-button" type="button" aria-label="Refresh forecast" title="Refresh forecast">
+            <span aria-hidden="true">↻</span>
+          </button>
+        </div>
+
+        <section class="location-card" aria-label="Choose location">
+          <button class="primary-action" id="locate-button" type="button">
+            <span aria-hidden="true">⌖</span>
+            Use my current location
+          </button>
+
+          <form class="search-form" id="search-form" autocomplete="off">
+            <label for="location-search">Search a place</label>
+            <div class="search-row">
+              <input id="location-search" name="location" type="search" placeholder="London, New York, Tokyo" required>
+              <button class="secondary-action" type="submit" aria-label="Search location">Search</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="current-card" aria-live="polite">
+          <div class="weather-art" aria-hidden="true">
+            <span class="sun"></span>
+            <span class="cloud cloud-one"></span>
+            <span class="cloud cloud-two"></span>
+            <span class="cloud cloud-three"></span>
+          </div>
+          <div class="current-copy">
+            <p id="place-label">Pick a location to begin</p>
+            <div class="cloud-value"><span id="cloud-cover">--</span><span>%</span></div>
+            <p id="current-summary">Current sky clean level will appear here.</p>
+          </div>
+        </section>
+
+        <section class="hourly-section" aria-labelledby="hourly-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Next 24 hours</p>
+              <h2 id="hourly-title">Hourly sky clean level</h2>
+            </div>
+          </div>
+          <div class="hourly-strip" id="hourly-strip" role="list"></div>
+        </section>
+
+        <section class="nights-section" aria-labelledby="nights-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Next 3 nights</p>
+              <h2 id="nights-title">Night hourly forecast</h2>
+            </div>
+          </div>
+          <div class="night-list" id="night-list"></div>
+        </section>
+
+        <p class="status" id="status-message" role="status"></p>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
